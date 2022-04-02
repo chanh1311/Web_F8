@@ -1,25 +1,49 @@
+const { estimatedDocumentCount } = require('../model/Product');
 const Product = require('../model/Product');
 
 class ProductController{
-   
+   // GET /product/:slug
     show(req, res,next) {
-        Product.findOne({slug: req.params.slug}).lean()
+        Product.findOne({slug: req.params.slug}).lean() 
         .then(
             product => res.render('product/show',{product})
         )
         .catch(next)
+        
     }
 
-    create(req, res,next) {
+
+    // GET /product/create
+    create(req,res,next) {
        res.render('product/create')
     }
 
+    // GET /product/store
     store(req, res,next) {
-        Product.create(req.body, function (err, small) {
-            if (err) return handleError(err);
-            res.redirect('/');
-          });
-     }
-}
+        Product.create(req.body)
+        .then(
+            res.redirect('/')
+          ).catch(
+              next
+          )
+    }      
+
+
+    // GET /product/:id/edit
+    edit(req, res, next){
+        Product.findById(req.params.id).lean()
+        .then(product => res.render('product/edit',{product}))
+        .catch(next)
+    }
+    
+     // PUT /product/:id
+     update(req, res, next){
+        Product.updateOne({id: req.params.id },req.body)
+        .then(res.redirect('/me/stored/product'))
+        .catch(next)
+    }
+
+}    
+
 
 module.exports = new ProductController();

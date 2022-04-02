@@ -1,39 +1,25 @@
-<div class="container mt-3">
-  <h2>Dropdowns</h2>
-  
-    <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
-      Dropdown button
-    </button>
-    <ul class="dropdown-menu">
-      <li><a class="dropdown-item" href="#">Link 1</a></li>
-      <li><a class="dropdown-item" href="#">Link 2</a></li>
-      <li><a class="dropdown-item" href="#">Link 3</a></li>
-    </ul>
-  </div>
-</div>
 
 
 
 
+<div class="mt-4 container bg-cl">
+    <div class="row text-center mx-auto">
 
-
-
-
-<div class="mt-4 ">
-  <div class="row">
-
-    {{#each product}}
-    <div class="col-xl-3 col-lg-4">
-      <div class="card custom" style="width:350px">
-        <a href="/product/{{this.slug}}"><img class="card-img-top" src="{{this.image}}" alt="Card image" style="width:100%"></a>
-        <div class="card-body">
-          <a href="/product/{{this.slug}}"><h4 class="card-title">{{this.name}}</h4></a>
-          <p class="card-text">{{this.description}}</p>
-          <a href="#" class="btn btn-primary">Mua Ngay</a>
+      {{#each product}}
+      <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
+        <div class="card custom card-item-css" style="width:350px">
+          <a href="/product/{{this.slug}}"><img class="card-img-top" src="{{this.image}}" alt="Card image" style="width:100%"></a>
+          <div class="card-body">
+            <a href="/product/{{this.slug}}"><h4 class="card-title">{{this.name}}</h4></a>
+            <p class="card-text">{{this.price}}</p>
+            <p class="card-text">{{this.description}}</p>
+            <a href="#" class="btn btn-primary">Mua Ngay</a>
+          </div>
         </div>
       </div>
-    </div>
-    {{/each}}
+      {{/each}}
 
-  </div>
+    </div>
 </div>
+
+
