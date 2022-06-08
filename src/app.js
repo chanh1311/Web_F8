@@ -6,7 +6,7 @@ const port = 3000;
 const { engine } = require('express-handlebars');
 const methodOverride = require('method-override');
 
-// tu dinh nghia
+// File tu dinh nghia
 const route = require('./routes');
 const db = require('./app/config/db');
 
@@ -40,6 +40,7 @@ app.engine(
 );
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'resources', 'views'));
+
 
 // config file static
 app.use(express.static(path.join(__dirname, 'public')));

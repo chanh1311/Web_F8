@@ -6,7 +6,7 @@ class ProductController {
     show(req, res, next) {
         Product.findOne({ slug: req.params.slug })
             .lean()
-            .then((product) => res.render('product/show', { product }))
+            .then((product) => res.render('product/show-detail', { product }))
             .catch(next);
     }
 
@@ -15,7 +15,7 @@ class ProductController {
         res.render('product/create');
     }
 
-    // GET /product/store
+    // POST /product/store
     store(req, res, next) {
         Product.create(req.body).then(res.redirect('/')).catch(next);
     }

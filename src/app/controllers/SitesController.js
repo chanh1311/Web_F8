@@ -5,7 +5,6 @@ class SitesController {
     // [GET] home
     index(req, res, next) {
         // res.json({name: 'Hello Ban!!!' })
-
         // promise
         Product.find({})
             .lean()
