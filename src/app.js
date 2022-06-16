@@ -6,6 +6,12 @@ const port = 3000;
 const { engine } = require('express-handlebars');
 const methodOverride = require('method-override');
 
+// middleware customizations
+const sortMiddleware = require('./app/middlewares/sortMiddleware');
+app.use(sortMiddleware);
+
+
+
 // File tu dinh nghia
 const route = require('./routes');
 const db = require('./app/config/db');
@@ -33,9 +39,7 @@ app.engine(
     'hbs',
     engine({
         extname: '.hbs',
-        helpers: {
-            sum: (a, b) => a + b,
-        },
+        helpers: require('./helper/handlebar')
     }),
 );
 app.set('view engine', 'hbs');

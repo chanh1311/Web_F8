@@ -17,7 +17,10 @@ class ProductController {
 
     // POST /product/store
     store(req, res, next) {
-        Product.create(req.body).then(res.redirect('/')).catch(next);
+        
+        Product.create(req.body)
+        .then(res.redirect('/'))
+        .catch(next);
     }
 
     // GET /product/:id/edit
@@ -35,11 +38,37 @@ class ProductController {
             .catch(next);
     }
 
+     // PATCH /product/:id/restore
+    restore(req, res, next) {
+        Product.restore({ _id: req.params.id})
+            .then(() => res.redirect('back'))
+            .catch(next);
+    }
+
      // DELETE /product/:id/delete
+     // delete of plugins add deleted:true
      destroy(req, res, next) {
+        Product.delete({ _id: req.params.id })
+        .then(() => res.redirect('back'))
+        .catch(next);
+    }
+    
+    // DELETE /product/:id/delete-force
+    destroyforce(req, res, next) {
         Product.deleteOne({ _id: req.params.id })
         .then(() => res.redirect('back'))
         .catch(next);
+    }
+
+      // POSY /product/hanlde-form-actions
+      handleFormActions(req, res, next) {
+        switch (req.body.action) {
+            case 'delete':
+                Product.delete({ _id: { $in: req.body.idProduct }})
+                .then(() => res.redirect('back'))
+                .catch(next);
+            break;
+        }
     }
 }
 
